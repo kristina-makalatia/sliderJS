@@ -1,3 +1,4 @@
+// ეს არის ჩვენი დატა მასივი, რომ დინამიურად წამოვიღოთ სლაიდების სურათები და ტექსტები
 let data = [
     {
         id: 1,
@@ -26,6 +27,7 @@ let data = [
 ]
 
 
+// ცალკე ცვლადებში ვინახავთ ჩვენს ელემნტებს
 let arrowLeft = document.getElementById('arrow-left');
 let arrowRight = document.getElementById('arrow-right');
 let sliderContent = document.getElementById('slider-content');
@@ -33,6 +35,8 @@ let dotItem = document.getElementsByClassName('dot');
 
 let sliderIndex = 0;
 
+
+// ამ ფუნქიის საშუალებით ვქმნის ა ტეგს
 function createAtag(item) {
     let tag = document.createElement('a');
     tag.setAttribute('href', item.url);
@@ -41,6 +45,8 @@ function createAtag(item) {
     return tag;
 }
 
+
+// ამ ფუნქცციის საშუალებით ვქმნით სურათს
 function createImgtag(item) {
     let tagImage = document.createElement('img');
     tagImage.setAttribute('src',item.imageUrl);
@@ -50,7 +56,7 @@ function createImgtag(item) {
     return tagImage;
 }
 
-
+// ამ ფუნქციის საშუალებით ვქმნით სათაურის ტეგს
 function createH2tag(item) {
     let tagTitle = document.createElement('h2');
     tagTitle.textContent = item.title;
@@ -60,10 +66,13 @@ function createH2tag(item) {
     return tagTitle;
 }
 
+
+// ამ ფუნქციის საშუალებით ვქმნით ბურთულებს
 function createDots(item) {
     let dots = document.createElement('div');
     dots.classList.add('dots-wraper');
 
+// დატა მასივს გადვუვლით ციკლის საშუალებით, რომ იმდენი ბურთულა სეაიმნას რამდენი სლაიდიც გვექნება ჩვენს მასივში
     data.forEach( (element) => {
         let dot = document.createElement('div');
         dot.classList.add('dot');
@@ -81,6 +90,8 @@ function createDots(item) {
 
 }
 
+
+//  ეს არის ჩვენი მთავარი ფუნქცია, რომელიც იძახებს დანარჩენ პატარა ფუნქციებს
 function setSlide() {
     sliderContent.innerHTML = '';
     let slideItem = createAtag(data[sliderIndex]);
@@ -97,10 +108,12 @@ function setSlide() {
     console.log(slideItem);
 }
 
+// აქტიური ბურთულა რომ იყოს სხვა ფერის
 function currentDotActive() {
     dotItem[sliderIndex].classList.add('active');
 }
 
+// ფუნქციაში აღწერილია რა უნდა  მოხდეს როცა დავაწვები previuos ისარს
 function arrowLeftClickSlider() {
     if (sliderIndex == 0) {
         sliderIndex = data.length -  1;
@@ -111,6 +124,7 @@ function arrowLeftClickSlider() {
     setSlide();
 }
 
+// ფუნქციაში აღწერილია რა უნდა  მოხდეს როცა დავაწვები next ისარს
 function arrowRightClickSlider() {
     if (sliderIndex == data.length - 1) {
         sliderIndex = 0;
@@ -122,10 +136,13 @@ function arrowRightClickSlider() {
 }
 
 
+// ქლიქის დროს ვიძახებ ფუნქციებს
 arrowLeft.addEventListener('click', arrowLeftClickSlider);
 
 arrowRight.addEventListener('click',arrowRightClickSlider);
 
+
+// თავისით რომ გადავიდეს ახალ სლაიდზე 3 წამშ ერთხელ
 // setInterval( () => {
 //     arrowRightClickSlider();
 // }, 3000);
