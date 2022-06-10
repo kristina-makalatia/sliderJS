@@ -48,10 +48,18 @@ function createAtag(item) {
 
 // ამ ფუნქცციის საშუალებით ვქმნით სურათს
 function createImgtag(item) {
-    let tagImage = document.createElement('img');
-    tagImage.setAttribute('src',item.imageUrl);
-    tagImage.setAttribute('alt', item.title);
-    tagImage.classList.add('image-slider');
+    // img tag 
+    // let tagImage = document.createElement('img');
+    // tagImage.setAttribute('src',item.imageUrl);
+    // tagImage.setAttribute('alt', item.title);
+    // tagImage.classList.add('image-slider');
+
+    // return tagImage;
+
+    // bg image
+    let tagImage = document.createElement('div');
+    tagImage.style.backgroundImage = `url(${item.imageUrl})`;
+    tagImage.classList.add('slide-bg');
 
     return tagImage;
 }
